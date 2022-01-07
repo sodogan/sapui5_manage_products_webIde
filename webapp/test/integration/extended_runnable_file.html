@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Integration tests for Manage products</title>
+
+	<script id="sap-ui-bootstrap" src="../../resources/sap-ui-core.js" data-sap-ui-theme="sap_fiori_3" data-sap-ui-resourceroots="{
+				&quot;com.sodogan.manage_products&quot;: &quot;../../&quot;
+			}" data-sap-ui-animation="false" data-sap-ui-compatversion="edge" data-sap-ui-async="true">
+	</script>
+	
+<script>
+var bRunWithMock = true;
+var sRunWithMock = jQuery.sap.getUriParameters().get('run-with-mock');
+if (sRunWithMock === 'false') {
+bRunWithMock = false;
+}
+if (bRunWithMock) {
+jQuery.sap.require('sap.ui.core.util.MockServer');
+var uri = '/ES5/sap/opu/odata/iwbep/GWSAMPLE_BASIC/';
+var oMock = new sap.ui.core.util.MockServer({rootUri : uri});
+var _sAppModulePath = "com.sodogan.manage_products/";
+var sMetadataPath = "localService/metadata.xml";
+var sMetadataUrl = jQuery.sap.getModulePath(_sAppModulePath) + "/" + sMetadataPath;
+var sMockdataBaseUrlPath = sMetadataUrl.replace(/[^/]+$/, 'mockdata');
+oMock.simulate(sMetadataUrl, { sMockdataBaseUrl : sMockdataBaseUrlPath, bGenerateMissingMockData : true });
+oMock.start();
+	sap.ui.getCore().attachInit(function () {
+		console.log('Running in demo mode with mock data.');
+	});
+}
+</script>
+
+
+
+	<link rel="stylesheet" type="text/css" href="../../resources/sap/ui/thirdparty/qunit-2.css">
+
+	<script src="../../resources/sap/ui/thirdparty/qunit-2.js"></script>
+	<script src="../../resources/sap/ui/qunit/qunit-junit.js"></script>
+
+	<script src="opaTests.qunit.js"></script>
+
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+</body>
+</html>

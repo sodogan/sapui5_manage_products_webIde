@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Panel class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto" headerText="{i18n>supplierTitle}" expandable="{device>/system/phone}"
+		expanded="false">
+		<content>
+			<List id="supplierList">
+				<items>
+					<StandardListItem icon="sap-icon://building" title="{CompanyName}"/>
+					<StandardListItem icon="sap-icon://email" title="{EmailAddress}"/>
+					<StandardListItem icon="sap-icon://world" title="{WebAddress}"/>
+					<StandardListItem icon="sap-icon://phone" title="{PhoneNumber}"/>
+					<StandardListItem icon="sap-icon://map" title="{Address/City}"/>
+				</items>
+			</List>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

@@ -1,0 +1,53 @@
+<mvc:View controllerName="com.sodogan.manage_products.controller.Add" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns="sap.m" busy="{addView>/busy}" busyIndicatorDelay="{addView>/delay}" xmlns:form="sap.ui.layout.form"
+	xmlns:smartfield="sap.ui.comp.smartfield" xmlns:smartform="sap.ui.comp.smartform"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:FullscreenPage id="page" title="{i18n>addPageTitle}" showNavButton="true" navButtonPress="onNavBack">
+		<semantic:content>
+			<Panel class="sapUiResponsiveMargin" width="auto" headerText="{i18n>productTitle}" expandable="{device>/system/phone}" expanded="true">
+				<content>
+					<smartform:SmartForm id="form" editable="true" title="{i18n>formTitle}" class="sapUiResponsiveMargin"
+						 app:defaultDropDownDisplayBehaviour="descriptionAndId">
+						<smartform:Group id="formGroup" label="{i18n>formGroupLabel}">
+							<smartform:GroupElement>
+								<smartfield:SmartField id="nameField" value="{Name}"/>
+							</smartform:GroupElement>
+							<smartform:GroupElement>
+								<smartfield:SmartField id="categoryField" value="{Category}">
+									<smartfield:configuration>
+										<smartfield:Configuration controlType="dropDownList" displayBehaviour="descriptionAndId"/>
+									</smartfield:configuration>
+								</smartfield:SmartField>
+							</smartform:GroupElement>
+							<smartform:GroupElement>
+								<smartfield:SmartField id="supplierIDField" value="{SupplierID}"/>
+							</smartform:GroupElement>
+							<smartform:GroupElement>
+								<smartfield:SmartField id="priceField" value="{Price}"/>
+							</smartform:GroupElement>
+						</smartform:Group>
+					</smartform:SmartForm>
+					<!--<form:SimpleForm id="objectForm" editable="true" title="New Product">
+						<form:content>
+							<Label text="Product Name"/>
+							<Input value="{Name}"/>
+							<Label text="Category"/>
+							<Input value="{Category}"/>
+							<Label text="Business Partner ID"/>
+							<Input value="{SupplierID}"/>
+							<Label text="Price"/>
+						    <Input value="{Price}"/>
+						</form:content>
+					</form:SimpleForm>
+					-->
+				</content>
+			</Panel>
+		</semantic:content>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save" press="onSave"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancel" press="onCancel"/>
+		</semantic:cancelAction>
+	</semantic:FullscreenPage>
+</mvc:View>

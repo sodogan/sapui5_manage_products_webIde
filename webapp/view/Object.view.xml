@@ -1,0 +1,30 @@
+<mvc:View controllerName="com.sodogan.manage_products.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.f.semantic" xmlns:form="sap.ui.layout.form" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:custom="com.sodogan.manage_products.control"
+	>
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading></semantic:titleHeading>
+		<!-- Title Breadcrumbs-->
+		<semantic:titleBreadcrumbs>
+			<Breadcrumbs>
+				<Link text="Home" press='onNavBack'/>
+			</Breadcrumbs>
+		</semantic:titleBreadcrumbs>
+		<semantic:headerContent>
+			<custom:CustomButton text='Submit' type="Accept"  valueSubmit=".onValueSubmit"></custom:CustomButton>
+			<custom:ProductRate valueSubmit="onRatingChanged"></custom:ProductRate>
+			<mvc:XMLView viewName="com.sodogan.manage_products.view.ProductDetails" id="innerView"/>
+			<core:Fragment fragmentName="com.sodogan.manage_products.view.fragments.SupplierInfo" type="XML"></core:Fragment>
+		</semantic:headerContent>
+		<semantic:content>
+			<Panel class="sapUiResponsiveMargin" width="auto" headerText="{i18n>mapTitle}" visible="{= !${device>/system/phone}}">
+				<Image
+					src="{ parts: [ 'ToSupplier/Address/Street', 'ToSupplier/Address/PostalCode', 'ToSupplier/Address/City', 'ToSupplier/Address/Country' ], formatter: '.formatter.formatMapUrl' }"/>
+			</Panel>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+		</semantic:sendEmailAction>
+	</semantic:SemanticPage>
+</mvc:View>
